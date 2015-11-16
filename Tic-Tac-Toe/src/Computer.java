@@ -6,5 +6,10 @@ public class Computer extends Player
 			{
 				// TODO Auto-generated constructor stub
 			}
+		
+		public void move()
+			{
+				
+			}
 
 	}

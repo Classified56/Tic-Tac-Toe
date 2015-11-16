@@ -11,10 +11,10 @@ public class Runner
 						
 					}
 			}
+		
 		public static void startUp()
 			{
 				System.out.println("Welcome to Three Dimensional Tic-Tac-Toe. \nAre you ready?\n");
 				System.out.println(board);
 			}
-
 	}

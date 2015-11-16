@@ -2,7 +2,7 @@
 public class Runner
 	{
 		private static Board board = new Board();
-		public static int p1Score, p2Score;
+		public static int score[] = new int[2];
 		public static void main(String[] args)
 			{
 				startUp();

@@ -2,6 +2,7 @@
 public class Board
 	{
 		private String board[][][] = new String[3][3][3];
+		private int numBoard[][][] = new int [3][3][3];
 		public Board()
 			{
 				for(int i = 0; i < 3; i++)
@@ -9,7 +10,10 @@ public class Board
 						for(int j = 0; j < 3; j++)
 							{
 								for(int k = 0; k < 3; k++)
-									board[i][j][k] = " ";
+									{
+										board[i][j][k] = " ";
+										numBoard[i][j][k] = 0;
+									}
 							}
 					}
 			}

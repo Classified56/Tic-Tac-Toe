@@ -4,12 +4,18 @@ public class Computer extends Player
 
 		public Computer()
 			{
-				// TODO Auto-generated constructor stub
+				marker = "O";
+				score = 0;
 			}
 		
-		public void move()
+		public void move(Board b)
 			{
 				
 			}
 
+		@Override
+		public String toString()
+			{
+				return "Computer: Marker = " + marker;
+			}
 	}

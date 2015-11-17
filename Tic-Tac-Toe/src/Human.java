@@ -1,15 +1,30 @@
+import java.util.Scanner;
 
 public class Human extends Player
 	{
-
-		public Human()
+		private Scanner userInput = new Scanner(System.in);
+		public Human(String s)
 			{
-				
+				marker = s;
+				score = 0;
 			}
 		
-		public void move()
+		public void move(Board b)
 			{
-				
+				System.out.print("Which plane do you want it in? ");
+				int dep = userInput.nextInt() - 1;
+				System.out.print("Which row do you want it in? ");
+				int row = userInput.nextInt() - 1;
+				System.out.print("Which column do you want it in? ");
+				int col = userInput.nextInt() - 1;
+				b.setSpot(marker, row, col, dep);
 			}
 
+		@Override
+		public String toString()
+			{
+				return "Human: Marker = " + marker;
+			}
+		
+		
 	}

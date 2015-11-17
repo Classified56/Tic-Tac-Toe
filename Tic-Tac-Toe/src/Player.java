@@ -1,5 +1,7 @@
 
 public abstract class Player
 	{
-		protected abstract void move();
+		protected int score;
+		protected String marker;
+		protected abstract void move(Board B);
 	}

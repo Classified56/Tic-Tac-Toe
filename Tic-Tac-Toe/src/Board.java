@@ -21,9 +21,38 @@ public class Board
 			{
 				return board[a][b][c];
 			}
+		
 		public void setSpot(String s, int a, int b, int c)
 			{
 				board[a][b][c] = s;
+				if(s.equals("X"))
+					numBoard[a][b][c] = 1;
+				else if(s.equals("O"))
+					numBoard[a][b][c] = 2;
+			}
+		
+		public int checkLinear(int row, int col, int dep, int dir)
+			{
+				int sum = 0;
+				for(int i = 0; i < 3; i++)
+					{
+						switch(dir)
+						{
+							case 0:
+								sum += numBoard[row][i][dep];
+								break;
+							case 1:
+								sum += numBoard[i][col][dep];
+								break;
+							case 2:
+								sum += numBoard[row][col][i];
+								break;
+						}
+					}
+				if(sum == 3 || sum == 6)
+					return 1;
+				else
+					return 0;
 			}
 		
 		@Override

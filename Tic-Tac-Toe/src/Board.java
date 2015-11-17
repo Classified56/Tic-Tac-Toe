@@ -17,6 +17,7 @@ public class Board
 							}
 					}
 			}
+		
 		public String getSpot(int a, int b, int c)
 			{
 				return board[a][b][c];
@@ -31,7 +32,114 @@ public class Board
 					numBoard[a][b][c] = 2;
 			}
 		
-		public int checkLinear(int row, int col, int dep, int dir)
+		public void check()
+			{
+				
+			}
+		
+		private int checkDiagnol(int row, int col, int dep, int dir)
+			{
+				int sum = 0;
+						switch(dir)
+						{
+							case 0:
+								sum += loopForward(0, dep);
+								break;
+							case 1:
+								sum += loopBackward(0, dep);
+								break;
+							case 2: 
+								sum += loopForward(1, col);
+								break;
+							case 3:
+								sum += loopBackward(1, col);
+								break;
+							case 4:
+								sum += loopForward(2, row);
+								break;
+							case 5:
+								sum += loopBackward(2, row);
+								break;
+						}
+				if(sum == 3 || sum == 6)
+					return 1;
+				else
+					return 0;
+			}
+		
+		private int checkDiagnol(int dir)
+			{
+				int sum = 0;
+				switch(dir)
+				{
+					case 0:
+						sum += numBoard[0][0][2];
+						sum += numBoard[1][1][1];
+						sum += numBoard[3][3][0];
+						break;
+					case 1:
+						sum += numBoard[0][2][2];
+						sum += numBoard[1][1][1];
+						sum += numBoard[0][3][0];
+						break;
+					case 2:
+						for(int i = 0; i < 3; i++)
+							sum += numBoard[i][i][i];
+						break;
+					case 3:
+						for(int i = 2; i >= 0; i--)
+							sum += numBoard[i][i][i];
+						break;
+				}
+				if(sum == 3 || sum == 6)
+					return 1;
+				else
+					return 0;
+			}
+		
+		private int loopForward(int constant, int spot)
+			{
+				int sum = 0;
+				switch(constant)
+				{
+					case 0:
+						for(int i = 0; i < 3; i++)
+							sum += numBoard[i][i][spot];
+						break;
+					case 1:
+						for(int i = 0; i < 3; i++)
+							sum += numBoard[i][spot][i];
+						break;
+					case 2:
+						for(int i = 0; i < 3; i++)
+							sum += numBoard[spot][i][i];
+						break;
+				}
+				return sum;
+			}
+		
+		private int loopBackward(int constant, int spot)
+			{
+				int sum = 0;
+				switch(constant)
+				{
+					case 0:
+						for(int i = 2; i >= 0; i--)
+							sum += numBoard[i][i][spot];
+						break;
+					case 1:
+						for(int i = 2; i >= 0; i--)
+							sum += numBoard[i][spot][i];
+						break;
+					case 2:
+						for(int i = 2; i >= 0; i--)
+							sum += numBoard[spot][i][i];
+						break;
+				}
+				return sum;
+			}
+		
+		private int checkLinear(int row, int col, int dep, int dir)
 			{
 				int sum = 0;
 				for(int i = 0; i < 3; i++)

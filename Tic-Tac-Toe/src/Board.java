@@ -32,75 +32,94 @@ public class Board
 					numBoard[a][b][c] = 2;
 			}
 		
-		public void check(int row, int col, int dep)
+		public int check(int row, int col, int dep)
 			{
-				checkLinear(row, col, dep, 0);
-				checkLinear(row, col, dep, 1);
-				checkLinear(row, col, dep, 2);
-				switch(row)
-				{
-					case 0:
-						if(col == 0)
-							checkDiagnol(row, col, dep, 0);
-						break;
-					case 1:
-						
-						break;
-					case 2:
-						
-						break;
-				}
+				int score = 0;
+				score += checkLinear(row, col, dep, 0);
+				score += checkLinear(row, col, dep, 1);
+				score += checkLinear(row, col, dep, 2);
 				if(row == 0 && col == 0 && dep == 0)
 					{
-						checkDiagnol(row, col, dep, 0);
-						checkDiagnol(row, col, dep, 2);
-						checkDiagnol(row, col, dep, 4);
+						score += checkDiagnol(row, col, dep, 0);
+						score += checkDiagnol(row, col, dep, 2);
+						score += checkDiagnol(row, col, dep, 4);
 					}
-				if(row == 0 && col == 2 && dep == 0)
+				else if(row == 0 && col == 2 && dep == 0)
 					{
-						checkDiagnol(row, col, dep, 1);
-						checkDiagnol(row, col, dep, 2);
-						checkDiagnol(row, col, dep, 5);
+						score += checkDiagnol(row, col, dep, 1);
+						score += checkDiagnol(row, col, dep, 2);
+						score += checkDiagnol(row, col, dep, 5);
 					}
-				if(row == 0 && col == 0 && dep == 2)
+				else if(row == 0 && col == 0 && dep == 2)
 					{
-						
+						score += checkDiagnol(row, col, dep, 0);
+						score += checkDiagnol(row, col, dep, 3);
+						score += checkDiagnol(row, col, dep, 5);
 					}
-				if(row == 0 && col == 2 && dep == 2)
+				else if(row == 0 && col == 2 && dep == 2)
 					{
-						
+						score += checkDiagnol(row, col, dep, 1);
+						score += checkDiagnol(row, col, dep, 3);
+						score += checkDiagnol(row, col, dep, 4);
 					}
-				if(row == 1 && col == 0 && dep == 0)
-					checkDiagnol(row, col, dep, 4);
-				if(row == 1 && col == 2 && dep == 0)
-					
-				if(row == 1 && col == 0 && dep == 2)
-					checkDiagnol(row, col, dep, 3);
-				if(row == 1 && col == 2 && dep == 2)
-					
-				if(row == 2 && col == 0 && dep == 0)
-					
-				if(row == 2 && col == 2 && dep == 0)
-					
-				if(row == 2 && col == 0 && dep == 2)
-					
-				if(row == 2 && col == 2 && dep == 2)
-					
-				if((row == 0 && col == 0 && dep == 0) || (row == 2 && col == 2 && dep == 2))
-					checkDiagnol(0);
+				else if(row == 0 && col == 1 && dep == 0)
+					score += checkDiagnol(row, col, dep, 2);
+				else if(row == 0 && col == 0 && dep == 1)
+					score += checkDiagnol(row, col, dep, 0);
+				else if(row == 0 && col == 1 && dep == 2)
+					score += checkDiagnol(row, col, dep, 3);
+				else if(row == 0 && col == 2 && dep == 1)
+					score += checkDiagnol(row, col, dep, 1);
+				else if((row == 1 && col == 0 && dep == 0) || (row == 1 && col == 2 && dep == 2))
+					score += checkDiagnol(row, col, dep, 4);
+				else if((row == 1 && col == 2 && dep == 0) || (row == 1 && col == 0 && dep == 2))
+					score += checkDiagnol(row, col, dep, 3);
+				else if(row == 2 && col == 0 && dep == 0)
+					{
+						score += checkDiagnol(row, col, dep, 1);
+						score += checkDiagnol(row, col, dep, 3);
+						score += checkDiagnol(row, col, dep, 4);
+					}
+				else if(row == 2 && col == 2 && dep == 0)
+					{
+						score += checkDiagnol(row, col, dep, 0);
+						score += checkDiagnol(row, col, dep, 3);
+						score += checkDiagnol(row, col, dep, 5);
+					}
+				else if(row == 2 && col == 0 && dep == 2)
+					{
+						score += checkDiagnol(row, col, dep, 1);
+						score += checkDiagnol(row, col, dep, 2);
+						score += checkDiagnol(row, col, dep, 5);
+					}
+				else if(row == 2 && col == 2 && dep == 2)
+					{
+						score += checkDiagnol(row, col, dep, 0);
+						score += checkDiagnol(row, col, dep, 2);
+						score += checkDiagnol(row, col, dep, 4);
+					}
+				else if((row == 0 && col == 0 && dep == 0) || (row == 2 && col == 2 && dep == 2))
+					score += checkDiagnol(0);
 				else if((row == 0 && col == 2 && dep == 0) || (row == 2 && col == 0 && dep == 2))
-					checkDiagnol(1);
+					score += checkDiagnol(1);
 				else if((row == 0 && col == 0 && dep == 2) || (row == 2 && col == 2 && dep == 0))
-					checkDiagnol(2);
+					score += checkDiagnol(2);
 				else if((row == 0 && col == 2 && dep == 2) || (row == 2 && col == 0 && dep == 0))
-					checkDiagnol(3);
+					score += checkDiagnol(3);
 				else if(row == 1 && col == 1 && dep == 1)
 					{
+						checkDiagnol(row, col, dep, 0);
+						checkDiagnol(row, col, dep, 1);
+						checkDiagnol(row, col, dep, 2);
+						checkDiagnol(row, col, dep, 3);
+						checkDiagnol(row, col, dep, 4);
+						checkDiagnol(row, col, dep, 5);
 						checkDiagnol(0);
 						checkDiagnol(1);
 						checkDiagnol(2);
 						checkDiagnol(3);
 					}
+				return score;
 			}
 		
 		private int checkDiagnol(int row, int col, int dep, int dir)

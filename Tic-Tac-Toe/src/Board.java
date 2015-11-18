@@ -32,9 +32,75 @@ public class Board
 					numBoard[a][b][c] = 2;
 			}
 		
-		public void check()
+		public void check(int row, int col, int dep)
 			{
-				
+				checkLinear(row, col, dep, 0);
+				checkLinear(row, col, dep, 1);
+				checkLinear(row, col, dep, 2);
+				switch(row)
+				{
+					case 0:
+						if(col == 0)
+							checkDiagnol(row, col, dep, 0);
+						break;
+					case 1:
+						
+						break;
+					case 2:
+						
+						break;
+				}
+				if(row == 0 && col == 0 && dep == 0)
+					{
+						checkDiagnol(row, col, dep, 0);
+						checkDiagnol(row, col, dep, 2);
+						checkDiagnol(row, col, dep, 4);
+					}
+				if(row == 0 && col == 2 && dep == 0)
+					{
+						checkDiagnol(row, col, dep, 1);
+						checkDiagnol(row, col, dep, 2);
+						checkDiagnol(row, col, dep, 5);
+					}
+				if(row == 0 && col == 0 && dep == 2)
+					{
+						
+					}
+				if(row == 0 && col == 2 && dep == 2)
+					{
+						
+					}
+				if(row == 1 && col == 0 && dep == 0)
+					checkDiagnol(row, col, dep, 4);
+				if(row == 1 && col == 2 && dep == 0)
+					
+				if(row == 1 && col == 0 && dep == 2)
+					checkDiagnol(row, col, dep, 3);
+				if(row == 1 && col == 2 && dep == 2)
+					
+				if(row == 2 && col == 0 && dep == 0)
+					
+				if(row == 2 && col == 2 && dep == 0)
+					
+				if(row == 2 && col == 0 && dep == 2)
+					
+				if(row == 2 && col == 2 && dep == 2)
+					
+				if((row == 0 && col == 0 && dep == 0) || (row == 2 && col == 2 && dep == 2))
+					checkDiagnol(0);
+				else if((row == 0 && col == 2 && dep == 0) || (row == 2 && col == 0 && dep == 2))
+					checkDiagnol(1);
+				else if((row == 0 && col == 0 && dep == 2) || (row == 2 && col == 2 && dep == 0))
+					checkDiagnol(2);
+				else if((row == 0 && col == 2 && dep == 2) || (row == 2 && col == 0 && dep == 0))
+					checkDiagnol(3);
+				else if(row == 1 && col == 1 && dep == 1)
+					{
+						checkDiagnol(0);
+						checkDiagnol(1);
+						checkDiagnol(2);
+						checkDiagnol(3);
+					}
 			}
 		
 		private int checkDiagnol(int row, int col, int dep, int dir)
@@ -73,22 +139,23 @@ public class Board
 				switch(dir)
 				{
 					case 0:
-						sum += numBoard[0][0][2];
-						sum += numBoard[1][1][1];
-						sum += numBoard[3][3][0];
-						break;
-					case 1:
-						sum += numBoard[0][2][2];
-						sum += numBoard[1][1][1];
-						sum += numBoard[0][3][0];
-						break;
-					case 2:
 						for(int i = 0; i < 3; i++)
 							sum += numBoard[i][i][i];
 						break;
+					case 1:
+						sum += numBoard[0][2][0];
+						sum += numBoard[1][1][1];
+						sum += numBoard[2][0][2];
+						break;
+					case 2:
+						sum += numBoard[0][0][2];
+						sum += numBoard[1][1][1];
+						sum += numBoard[2][2][0];
+						break;
 					case 3:
-						for(int i = 2; i >= 0; i--)
-							sum += numBoard[i][i][i];
+						sum += numBoard[0][2][2];
+						sum += numBoard[1][1][1];
+						sum += numBoard[2][0][0];
 						break;
 				}
 				if(sum == 3 || sum == 6)

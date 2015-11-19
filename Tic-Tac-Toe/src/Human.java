@@ -18,6 +18,8 @@ public class Human extends Player
 				System.out.print("Which column do you want it in? ");
 				int col = userInput.nextInt() - 1;
 				b.setSpot(marker, row, col, dep);
+				score += b.check(row, col, dep);
+				System.out.println("Your score is now: " + score);
 			}
 
 		@Override

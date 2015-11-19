@@ -12,7 +12,7 @@ public class Board
 								for(int k = 0; k < 3; k++)
 									{
 										board[i][j][k] = " ";
-										numBoard[i][j][k] = 0;
+										numBoard[i][j][k] = 7;
 									}
 							}
 					}
@@ -98,7 +98,7 @@ public class Board
 						score += checkDiagnol(row, col, dep, 2);
 						score += checkDiagnol(row, col, dep, 4);
 					}
-				else if((row == 0 && col == 0 && dep == 0) || (row == 2 && col == 2 && dep == 2))
+				if((row == 0 && col == 0 && dep == 0) || (row == 2 && col == 2 && dep == 2))
 					score += checkDiagnol(0);
 				else if((row == 0 && col == 2 && dep == 0) || (row == 2 && col == 0 && dep == 2))
 					score += checkDiagnol(1);
@@ -252,7 +252,7 @@ public class Board
 		@Override
 		public String toString()
 			{
-				String printed = "    1     \t    2               3\n";
+				String printed = "\n    1     \t    2               3\n";
 				for(int row = 0; row < 3; row++)
 					{
 						for(int plane = 0; plane < 3; plane++)
@@ -268,6 +268,7 @@ public class Board
 						if(row < 2)
 							printed += "\n---------\t---------\t---------\n";
 					}
+				printed += "\n";
 				return printed;
 			}
 	}

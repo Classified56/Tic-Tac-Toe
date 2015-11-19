@@ -11,8 +11,9 @@ public class Runner
 				startUp();
 				for(int turns = 0; turns < 27; turns++)
 					{
-						player[0].move(board);
-						System.out.println("\n" + board + "\n");
+						System.out.println("Player " + (turns % 2 + 1) + " turn.");
+						player[turns % 2].move(board);
+						System.out.println(board);
 					}
 			}
 		

@@ -30,6 +30,7 @@ public class Human extends Player
 					}
 				b.setSpot(marker, row, col, dep);
 				score += b.check(row, col, dep);
+				score += Runner.board.check(row, col, dep);
 				System.out.println("Your score is now: " + score);
 			}
 

@@ -10,11 +10,11 @@ public class FourthDimension
 					}
 			}
 		
-		public int check(int a, int b, int c, int d)
+		public int check(int a, int b, int c)
 			{
 				int sum = 0;
 				for(int i = 0; i < 3; i++)
-					sum += board[d].getNumber(a, b, c);
+					sum += board[i].getNumber(a, b, c);
 				if(sum == 3 || sum == 6)
 					return 1;
 				else

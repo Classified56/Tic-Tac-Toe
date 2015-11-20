@@ -2,19 +2,18 @@ import java.util.Scanner;
 
 public class Runner
 	{
-		private static FourthDimension board = new FourthDimension();
+		static FourthDimension board = new FourthDimension();
 		private static Player player[] = new Player[2];
 		private static Scanner userInput = new Scanner(System.in);
 		
 		public static void main(String[] args)
 			{
 				startUp();
-				for(int turns = 0; turns < 27; turns++)
+				for(int turns = 0; turns < 81; turns++)
 					{
-						System.out.println("Player " + (turns % 2 + 1) + " turn.");
-						System.out.print("\nWhich dimension do you want it in? ");
-						int x = userInput.nextInt() - 1;
-						player[turns % 2].move(board.getBoard(x));
+						//System.out.println("Player " + (turns % 2 + 1) + " turn.");
+						//player[turns % 2].move(board.getBoard(askDimension()));
+						player[0].move(board.getBoard(askDimension()));
 						System.out.println(board);
 					}
 				System.out.println("Game over. ");
@@ -26,7 +25,7 @@ public class Runner
 					System.out.println("It's a tie!");
 			}
 		
-		public static void startUp()
+		private static void startUp()
 			{
 				System.out.println("Welcome to Three Dimensional Tic-Tac-Toe. \n");
 				System.out.println(board);
@@ -47,5 +46,18 @@ public class Runner
 				for(int i = 0; i < 2; i++)
 					System.out.println(player[i]);
 				System.out.println();
+			}
+		
+		private static int askDimension()
+			{
+				while(true)
+					{
+						System.out.print("Which dimension do you want it in? ");
+						int x = userInput.nextInt() - 1;
+						if(x <= 2 && x >= 0)
+							return x;
+						else
+							System.out.println("Pick a valid plane. ");
+					}
 			}
 	}

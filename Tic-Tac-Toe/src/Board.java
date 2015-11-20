@@ -23,6 +23,11 @@ public class Board
 				return board[a][b][c];
 			}
 		
+		public int getNumber(int a, int b, int c)
+			{
+				return numBoard[a][b][c];
+			}
+		
 		public void setSpot(String s, int a, int b, int c)
 			{
 				board[a][b][c] = s;

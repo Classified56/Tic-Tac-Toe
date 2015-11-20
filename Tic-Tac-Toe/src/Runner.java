@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Runner
 	{
-		private static Board board = new Board();
+		private static FourthDimension board = new FourthDimension();
 		private static Player player[] = new Player[2];
 		private static Scanner userInput = new Scanner(System.in);
 		
@@ -12,9 +12,18 @@ public class Runner
 				for(int turns = 0; turns < 27; turns++)
 					{
 						System.out.println("Player " + (turns % 2 + 1) + " turn.");
-						player[turns % 2].move(board);
+						System.out.print("\nWhich dimension do you want it in? ");
+						int x = userInput.nextInt() - 1;
+						player[turns % 2].move(board.getBoard(x));
 						System.out.println(board);
 					}
+				System.out.println("Game over. ");
+				if(player[0].getScore() > player[1].getScore())
+					System.out.println("Player 1 wins! " + player[0].getScore() + " : " + player[1].getScore());
+				else if(player[0].getScore() < player[1].getScore())
+					System.out.println("Player 2 wins! " + player[0].getScore() + " : " + player[1].getScore());
+				else
+					System.out.println("It's a tie!");
 			}
 		
 		public static void startUp()

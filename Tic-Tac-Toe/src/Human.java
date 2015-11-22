@@ -37,7 +37,7 @@ public class Human extends Player
 		@Override
 		public String toString()
 			{
-				return "Human: Marker = " + marker + ". Score is " + score;
+				return "Human: Marker = " + marker;
 			}
 		
 		

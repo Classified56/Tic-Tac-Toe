@@ -43,65 +43,33 @@ public class Board
 				score += checkLinear(row, col, dep, 0);
 				score += checkLinear(row, col, dep, 1);
 				score += checkLinear(row, col, dep, 2);
-				if(row == 0 && col == 0 && dep == 0)
-					{
-						score += checkDiagnol(row, col, dep, 0);
-						score += checkDiagnol(row, col, dep, 2);
-						score += checkDiagnol(row, col, dep, 4);
-					}
-				else if(row == 0 && col == 2 && dep == 0)
-					{
-						score += checkDiagnol(row, col, dep, 1);
-						score += checkDiagnol(row, col, dep, 2);
-						score += checkDiagnol(row, col, dep, 5);
-					}
-				else if(row == 0 && col == 0 && dep == 2)
-					{
-						score += checkDiagnol(row, col, dep, 0);
-						score += checkDiagnol(row, col, dep, 3);
-						score += checkDiagnol(row, col, dep, 5);
-					}
-				else if(row == 0 && col == 2 && dep == 2)
-					{
-						score += checkDiagnol(row, col, dep, 1);
-						score += checkDiagnol(row, col, dep, 3);
-						score += checkDiagnol(row, col, dep, 4);
-					}
-				else if(row == 0 && col == 1 && dep == 0)
-					score += checkDiagnol(row, col, dep, 2);
-				else if(row == 0 && col == 0 && dep == 1)
+				
+				if((row == 0 && col == 0) || (row == 2 && col == 2))
 					score += checkDiagnol(row, col, dep, 0);
-				else if(row == 0 && col == 1 && dep == 2)
-					score += checkDiagnol(row, col, dep, 3);
-				else if(row == 0 && col == 2 && dep == 1)
+				if((row == 0 && col == 2) || (row == 2 && col == 0))
 					score += checkDiagnol(row, col, dep, 1);
-				else if((row == 1 && col == 0 && dep == 0) || (row == 1 && col == 2 && dep == 2))
-					score += checkDiagnol(row, col, dep, 4);
-				else if((row == 1 && col == 2 && dep == 0) || (row == 1 && col == 0 && dep == 2))
+				if((row == 0 && dep == 0) || (row == 2 && dep == 2))
+					score += checkDiagnol(row, col, dep, 2);
+				if((row == 0 && dep == 2) || (row == 2 && dep == 0))
 					score += checkDiagnol(row, col, dep, 3);
-				else if(row == 2 && col == 0 && dep == 0)
-					{
-						score += checkDiagnol(row, col, dep, 1);
-						score += checkDiagnol(row, col, dep, 3);
-						score += checkDiagnol(row, col, dep, 4);
-					}
-				else if(row == 2 && col == 2 && dep == 0)
+				if((col == 0 && dep == 0) || (col == 2 && dep == 2))
+					score += checkDiagnol(row, col, dep, 4);
+				if((col == 0 && dep == 2) || (col == 2 && dep == 0))
+					score += checkDiagnol(row, col, dep, 5);
+				if(row == 1 && col == 1)
 					{
 						score += checkDiagnol(row, col, dep, 0);
-						score += checkDiagnol(row, col, dep, 3);
-						score += checkDiagnol(row, col, dep, 5);
-					}
-				else if(row == 2 && col == 0 && dep == 2)
-					{
 						score += checkDiagnol(row, col, dep, 1);
-						score += checkDiagnol(row, col, dep, 2);
-						score += checkDiagnol(row, col, dep, 5);
 					}
-				else if(row == 2 && col == 2 && dep == 2)
+				else if(row == 1 && dep == 1)
 					{
-						score += checkDiagnol(row, col, dep, 0);
 						score += checkDiagnol(row, col, dep, 2);
+						score += checkDiagnol(row, col, dep, 3);
+					}
+				else if(col == 1 && dep == 1)
+					{
 						score += checkDiagnol(row, col, dep, 4);
+						score += checkDiagnol(row, col, dep, 5);
 					}
 				if((row == 0 && col == 0 && dep == 0) || (row == 2 && col == 2 && dep == 2))
 					score += checkDiagnol(0);
@@ -212,19 +180,29 @@ public class Board
 		private int loopBackward(int constant, int spot)
 			{
 				int sum = 0;
+				int x = 2;
 				switch(constant)
 				{
 					case 0:
-						for(int i = 2; i >= 0; i--)
-							sum += numBoard[i][i][spot];
+						for(int i = 0; i < 3; i++)
+							{
+								sum += numBoard[i][x][spot];
+								x--;
+							}
 						break;
 					case 1:
-						for(int i = 2; i >= 0; i--)
-							sum += numBoard[i][spot][i];
+						for(int i = 0; i < 3; i++)
+							{
+								sum += numBoard[i][spot][x];
+								x--;
+							}
 						break;
 					case 2:
-						for(int i = 2; i >= 0; i--)
-							sum += numBoard[spot][i][i];
+						for(int i = 0; i < 3; i++)
+							{
+								sum += numBoard[spot][i][x];
+								x--;
+							}
 						break;
 				}
 				return sum;

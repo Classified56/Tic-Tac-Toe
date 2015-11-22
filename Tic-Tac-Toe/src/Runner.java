@@ -11,9 +11,8 @@ public class Runner
 				startUp();
 				for(int turns = 0; turns < 81; turns++)
 					{
-						//System.out.println("Player " + (turns % 2 + 1) + " turn.");
-						//player[turns % 2].move(board.getBoard(askDimension()));
-						player[0].move(board.getBoard(askDimension()));
+						System.out.println("Player " + (turns % 2 + 1) + " turn.");
+						player[turns % 2].move(board.getBoard(askDimension()));
 						System.out.println(board);
 					}
 				System.out.println("Game over. ");
@@ -27,7 +26,7 @@ public class Runner
 		
 		private static void startUp()
 			{
-				System.out.println("Welcome to Three Dimensional Tic-Tac-Toe. \n");
+				System.out.println("Welcome to Four Dimensional Tic-Tac-Toe. \n");
 				System.out.println(board);
 				System.out.print("\nHow many players are there? ");
 				int players = userInput.nextInt();

@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Runner
 	{
-		static FourthDimension board = new FourthDimension();
+		private static FourthDimension board = new FourthDimension();
 		private static Player player[] = new Player[2];
 		private static Scanner userInput = new Scanner(System.in);
 		
@@ -12,7 +12,7 @@ public class Runner
 				for(int turns = 0; turns < 81; turns++)
 					{
 						System.out.println("Player " + (turns % 2 + 1) + " turn.");
-						player[turns % 2].move(board.getBoard(askDimension()));
+						player[turns % 2].move(board);
 						System.out.println(board);
 					}
 				System.out.println("Game over. ");
@@ -33,30 +33,17 @@ public class Runner
 				player[0] = new Human("X");
 				switch(players)
 				{
-					case 1:
-						player[1] = new Computer();
+					case 2:
+						player[1] = new Human("O");
 						break;
 					default:
 						System.out.println("A computer was created due to your incompetence.");
-					case 2:
-						player[1] = new Human("O");
+					case 1:
+						player[1] = new easyComputer();
 						break;
 				}
 				for(int i = 0; i < 2; i++)
 					System.out.println(player[i]);
 				System.out.println();
-			}
-		
-		private static int askDimension()
-			{
-				while(true)
-					{
-						System.out.print("Which dimension do you want it in? ");
-						int x = userInput.nextInt() - 1;
-						if(x <= 2 && x >= 0)
-							return x;
-						else
-							System.out.println("Pick a valid plane. ");
-					}
 			}
 	}

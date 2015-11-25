@@ -5,20 +5,26 @@ public class Tester
 		private static Player player[] = new Player[2];
 		private static int averageScore;
 		private static int lowestScore = 20;
+		private static int winSpots[][][] = new int[3][3][3];
+		private static int lose = 0;
 		public static void main(String[] args)
 			{
-				for(int i = 0; i < 10000; i++)
+				for(int i = 0; i < 100000; i++)
 					{
 						startUp();
 						for(int turns = 0; turns < 81; turns++)
-								player[turns % 2].move(board);
+							{
+								int nums[] = player[turns % 2].moveTest(board);
+								if(nums[0] == 3)
+									lose++;
+								else
+									winSpots[nums[0]][nums[1]][nums[2]]++;
+							}
 						end();
 						averageOfLines();
 						board = new FourthDimension();
 					}
-				averageScore /= 10000;
-				System.out.println("The average winning score is: " + averageScore);
-				System.out.println("The lowest winning score is: " + lowestScore);
+				endGame();
 			}
 		
 		private static void startUp()
@@ -35,6 +41,33 @@ public class Tester
 					System.out.println("Player 2 wins! " + player[0].getScore() + " : " + player[1].getScore());
 				else
 					System.out.println("It's a tie!");
+			}
+		
+		private static void endGame()
+			{
+				averageScore /= 100000;
+				System.out.println("The average winning score is: " + averageScore);
+				System.out.println("The lowest winning score is: " + lowestScore);
+				String printed = "\n";
+				for(int i = 0; i < 3; i++)
+					{
+						for(int j = 0; j < 3; j++)
+							{
+								for(int k = 0; k < 3; k++)
+									{
+										double x = (winSpots[i][k][j] / 100000.0);
+										if(k < 2)
+											printed += x + " | ";
+										else
+											printed += x + "   ";
+									}
+							}	
+						if(i < 2)
+							printed += "\n";
+					}
+				System.out.println(printed + "\n");
+				lose /= 100000; 
+				System.out.println("The number of losing moves is: " + lose);
 			}
 		
 		private static void averageOfLines()

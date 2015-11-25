@@ -81,16 +81,16 @@ public class Board
 					score += checkDiagnol(3);
 				else if(row == 1 && col == 1 && dep == 1)
 					{
-						checkDiagnol(row, col, dep, 0);
-						checkDiagnol(row, col, dep, 1);
-						checkDiagnol(row, col, dep, 2);
-						checkDiagnol(row, col, dep, 3);
-						checkDiagnol(row, col, dep, 4);
-						checkDiagnol(row, col, dep, 5);
-						checkDiagnol(0);
-						checkDiagnol(1);
-						checkDiagnol(2);
-						checkDiagnol(3);
+						score += checkDiagnol(row, col, dep, 0);
+						score += checkDiagnol(row, col, dep, 1);
+						score += checkDiagnol(row, col, dep, 2);
+						score += checkDiagnol(row, col, dep, 3);
+						score += checkDiagnol(row, col, dep, 4);
+						score += checkDiagnol(row, col, dep, 5);
+						score += checkDiagnol(0);
+						score += checkDiagnol(1);
+						score += checkDiagnol(2);
+						score += checkDiagnol(3);
 					}
 				return score;
 			}

@@ -55,7 +55,7 @@ public class Tester
 							{
 								for(int k = 0; k < 3; k++)
 									{
-										double x = (winSpots[i][k][j] / 100000.0);
+										double x = (winSpots[i][k][j] / 1000000.0);
 										if(k < 2)
 											printed += x + " | ";
 										else

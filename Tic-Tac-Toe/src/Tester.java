@@ -2,7 +2,7 @@
 public class Tester
 	{
 		private static FourthDimension board = new FourthDimension();
-		private static Player player[] = new Player[2];
+		private static easyComputer player[] = new easyComputer[2];
 		private static int averageScore;
 		private static int lowestScore = 20;
 		private static int winSpots[][][] = new int[3][3][3];
